@@ -65,10 +65,17 @@ export default function Stopwatch() {
     setPrevLapTime(currentTime);
   }
 
+  function storeLapHistory(newRecord) {
+    const history = JSON.parse(localStorage.getItem("lapHistory"));
+    history.push(newRecord);
+    localStorage.setItem("lapHistory", JSON.stringify(history));
+  }
+
   function updateLapHistory() {
     let lapRecord = {};
     lapRecord.totalTime = convertToDisplayTime(currentTime);
     lapRecord.lapTime = convertToDisplayTime(currentTime - prevLapTime);
+    storeLapHistory(lapRecord);
     setLapHistory((prevState) => {
       const newState = [...prevState];
       newState.push(lapRecord);
@@ -78,9 +85,21 @@ export default function Stopwatch() {
 
   function clearLapHistory() {
     setLapHistory([]);
+    localStorage.setItem("lapHistory", "[]");
     setPrevLapTime(0);
   }
 
+  //Get lapHistory from localStorage upon
+  useEffect(() => {
+    const storedLapHistory = localStorage.getItem("lapHistory");
+    if (!storedLapHistory) {
+      localStorage.setItem("lapHistory", "[]");
+    } else {
+      setLapHistory(JSON.parse(storedLapHistory));
+    }
+  }, []);
+
+  //Clean up requestAnimationFrame
   useEffect(() => {
     return () => {
       if (requestId) cancelAnimationFrame(requestId);
