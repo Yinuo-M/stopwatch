@@ -15,7 +15,7 @@
   --font: "Roboto Mono", monospace;
   --timer: 2.7rem var(--font);
   --button: 600 0.9rem var(--font);
-  --table: 1rem var(--font);
+  --table: 300 0.9rem var(--font);
 }
 
 body {
@@ -25,4 +25,5 @@ body {
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  overflow: hidden;
 }

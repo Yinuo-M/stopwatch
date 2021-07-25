@@ -1,4 +1,4 @@
-.controls__button {
+.controls__button .button__elem {
   height: 3.8rem;
   width: 3.8rem;
   border-radius: 50%;
@@ -9,26 +9,29 @@
   transition: background-color 0.1s ease-out;
 }
 
-.controls__button--gray {
+.controls__button--gray .button__elem {
   background: var(--gray);
 
-  &:hover {
+  &:hover,
+  &:focus-visible {
     background: var(--dark-gray);
   }
 }
 
-.controls__button--red {
+.controls__button--red .button__elem {
   background: var(--red);
 
-  &:hover {
+  &:hover,
+  &:focus-visible {
     background: var(--dark-red);
   }
 }
 
-.controls__button--yellow {
+.controls__button--yellow .button__elem {
   background: var(--yellow);
 
-  &:hover {
+  &:hover,
+  &:focus-visible {
     background: var(--dark-yellow);
   }
 }

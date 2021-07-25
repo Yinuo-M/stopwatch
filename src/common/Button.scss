@@ -1,5 +1,6 @@
 @use "./ControlsButton.scss";
+@use "./LapButton.scss";
 
-.button {
+.button__elem {
   cursor: pointer;
 }

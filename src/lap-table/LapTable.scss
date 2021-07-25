@@ -1,0 +1,42 @@
+.lap {
+  margin: 3rem 1rem 0 1rem;
+}
+
+.lap__table {
+  // Reset table style to collapse table borders
+  // and size columns according to the width of
+  // their headings.
+  table-layout: fixed;
+  min-width: 18rem;
+  border-collapse: collapse;
+
+  * {
+    font: var(--table);
+  }
+}
+
+.lap__thead {
+  color: var(--green);
+  border-bottom: 1px solid rgba(128, 128, 128, 0.4);
+}
+
+.lap__th--label {
+  width: 20%;
+}
+
+.lap__th--lap-time {
+  width: 40%;
+}
+
+.lap__th--total-time {
+  width: 40%;
+}
+
+.lap__th {
+  padding: 0.7rem 0;
+}
+
+.lap__td {
+  padding-top: 0.5rem;
+}
+
