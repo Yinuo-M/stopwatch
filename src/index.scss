@@ -1,0 +1,28 @@
+:root {
+  font-size: 16px;
+
+  --black: #011627;
+  --white: #ececec;
+  --gray: #cecece;
+  --dark-gray: #999999;
+  --red: #ff3366;
+  --dark-red: #c7274f;
+  --yellow: #f39237;
+  --dark-yellow: #c2742b;
+  --green: #2ec4b6;
+  --dark-green: #209488;
+
+  --font: "Roboto Mono", monospace;
+  --timer: 2.7rem var(--font);
+  --button: 600 0.9rem var(--font);
+  --table: 1rem var(--font);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--black);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
