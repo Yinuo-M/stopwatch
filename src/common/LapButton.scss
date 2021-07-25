@@ -1,20 +1,22 @@
 .lap__button {
-  display: flex;
-  justify-content: flex-end;
-  padding: 1.5rem 1rem;
-}
-
-.lap__button .button__elem {
   border: none;
   color: var(--black);
   font: var(--table);
   font-weight: 600;
   background: var(--green);
   padding: 0.2rem 0.3rem;
+  margin: 1.5rem;
   transition: background-color 0.1s ease-out;
 
   &:hover,
   &:focus-visible {
     background: var(--dark-green);
+  }
+}
+
+@media (min-width: 700px) {
+  .lap__button {
+    margin-left: 0;
+    padding: 0.3rem 0.5rem;
   }
 }

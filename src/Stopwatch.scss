@@ -1,3 +1,16 @@
 .stopwatch {
   margin-top: 3rem;
 }
+
+@media (min-width: 700px) {
+  .stopwatch {
+    margin-left: 3rem;
+    margin-top: 0;
+  }
+}
+
+@media (min-width: 1400px) {
+  .stopwatch {
+    margin-left: 15rem;
+  }
+}

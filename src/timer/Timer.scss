@@ -4,3 +4,28 @@
   margin: 0 0 1rem 0;
   text-align: center;
 }
+
+@media (min-width: 400px) {
+  .timer {
+    --timer: 3.5rem var(--font);
+  }
+}
+
+@media (min-width: 530px) {
+  .timer {
+    --timer: 4.5rem var(--font);
+  }
+}
+
+
+@media (min-width: 700px) {
+  .timer {
+    --timer: 5.5rem var(--font);
+  }
+}
+
+@media (min-width: 900px) {
+  .timer {
+    --timer: 7.5rem var(--font);
+  }
+}

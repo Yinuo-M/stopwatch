@@ -1,5 +1,10 @@
 .lap {
   margin: 3rem 1rem 0 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .lap__table {
@@ -38,5 +43,36 @@
 
 .lap__td {
   padding-top: 0.5rem;
+}
+
+@media (min-width: 530px) {
+  .lap {
+    margin-top: 4rem;
+  }
+}
+
+@media (min-width: 700px) {
+  .lap {
+    align-items: flex-start;
+    margin-left: 0;
+    text-align: left;
+    --table: 300 1.2rem var(--font);
+  }
+
+  .lap__table {
+    min-width: 25rem;
+  }
+
+  .lap__th--label {
+    width: 26%;
+  }
+
+  .lap__th--lap-time {
+    width: 37%;
+  }
+
+  .lap__th--total-time {
+    width: 37%;
+  }
 }
 

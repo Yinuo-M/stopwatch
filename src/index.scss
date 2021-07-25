@@ -27,3 +27,10 @@ body {
   align-items: flex-start;
   overflow: hidden;
 }
+
+@media (min-width: 700px) {
+  body {
+    justify-content: flex-start;
+    align-items: center;
+  }
+}
