@@ -39,7 +39,18 @@
 
 @media (min-width: 400px) {
   .controls__button {
+    height: 4.1rem;
+    width: 4.1rem;
     margin: 0 1.2rem;
+    --button: 600 1rem var(--font);
+  }
+}
+
+@media (min-width: 530px) {
+  .controls__button {
+    height: 4.4rem;
+    width: 4.4rem;
+    --button: 600 1.1rem var(--font);
   }
 }
 

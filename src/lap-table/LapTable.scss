@@ -45,9 +45,16 @@
   padding-top: 0.5rem;
 }
 
+@media (min-width: 400px) {
+  .lap {
+    --table: 300 1rem var(--font);
+  }
+}
+
 @media (min-width: 530px) {
   .lap {
     margin-top: 4rem;
+    --table: 300 1.1rem var(--font);
   }
 }
 
@@ -60,19 +67,6 @@
   }
 
   .lap__table {
-    min-width: 25rem;
-  }
-
-  .lap__th--label {
-    width: 26%;
-  }
-
-  .lap__th--lap-time {
-    width: 37%;
-  }
-
-  .lap__th--total-time {
-    width: 37%;
+    min-width: 30rem;
   }
 }
-
