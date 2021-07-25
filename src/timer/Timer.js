@@ -1,5 +1,5 @@
 import "./Timer.scss";
 
-export default function Timer() {
-  return <h1 className="timer">00:00:00:00</h1>;
+export default function Timer(props) {
+  return <h1 className="timer">{props.displayTime}</h1>;
 }
