@@ -23,7 +23,7 @@ export default function Stopwatch() {
   // Current time is the amount of time that should be displayed.
   const [currentTime, setCurrentTime] = useState(0);
   const [requestId, setRequestId] = useState(null);
-  const [prevLapTime, setPrevLapTime] = useState(null);
+  const [prevLapTime, setPrevLapTime] = useState(0);
   const [lapHistory, setLapHistory] = useState([]);
 
   function startTimer() {
@@ -35,13 +35,14 @@ export default function Stopwatch() {
   function updateTime(timestamp) {
     if (!startTime.current) startTime.current = timestamp;
     setCurrentTime(elapsedTime + timestamp - startTime.current);
+    console.log("running");
 
     const requestId = requestAnimationFrame(updateTime);
     setRequestId(requestId);
   }
 
   function pauseTimer() {
-    cleanup();
+    if (requestId) cancelAnimationFrame(requestId);
     setRequestId(null);
     startTime.current = 0;
     setIsPaused(true);
@@ -49,13 +50,14 @@ export default function Stopwatch() {
   }
 
   function resetTimer() {
-    cleanup();
+    if (requestId) cancelAnimationFrame(requestId);
     setRequestId(null);
     startTime.current = 0;
     setIsPaused(false);
     setIsActive(false);
     setElapsedTime(0);
     setCurrentTime(0);
+    setPrevLapTime(0);
   }
 
   function lapTimer() {
@@ -72,16 +74,18 @@ export default function Stopwatch() {
       newState.push(lapRecord);
       return newState;
     });
-    console.log(lapHistory);
   }
 
-  function cleanup() {
-    if (requestId) cancelAnimationFrame(requestId);
+  function clearLapHistory() {
+    setLapHistory([]);
+    setPrevLapTime(0);
   }
 
   useEffect(() => {
-    return cleanup;
-  });
+    return () => {
+      if (requestId) cancelAnimationFrame(requestId);
+    };
+  }, [requestId]);
 
   return (
     <div className="stopwatch">
@@ -94,7 +98,9 @@ export default function Stopwatch() {
         resetTimer={resetTimer}
         lapTimer={lapTimer}
       />
-      <LapTable lapHistory={lapHistory} />
+      {lapHistory.length > 0 ? (
+        <LapTable lapHistory={lapHistory} clearLapHistory={clearLapHistory} />
+      ) : null}
     </div>
   );
 }

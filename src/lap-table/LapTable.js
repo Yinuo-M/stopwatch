@@ -21,7 +21,11 @@ export default function LapTable(props) {
         </thead>
         <TableBody lapHistory={props.lapHistory} />
       </table>
-      <Button className="lap__button" onClick={null} text="clear" />
+      <Button
+        className="lap__button"
+        handleClick={props.clearLapHistory}
+        text="clear"
+      />
     </div>
   );
 }

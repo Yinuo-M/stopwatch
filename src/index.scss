@@ -25,7 +25,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 @media (min-width: 700px) {
