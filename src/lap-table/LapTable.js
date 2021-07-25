@@ -2,11 +2,7 @@ import TableBody from "./TableBody";
 import Button from "../common/Button";
 import "./LapTable.scss";
 
-export default function LapTable() {
-  function handleClick() {
-    console.log("clicked");
-  }
-
+export default function LapTable(props) {
   return (
     <div className="lap">
       <table className="lap__table">
@@ -23,9 +19,9 @@ export default function LapTable() {
             </th>
           </tr>
         </thead>
-        <TableBody />
+        <TableBody lapHistory={props.lapHistory} />
       </table>
-      <Button className="lap__button" onClick={handleClick} text="clear" />
+      <Button className="lap__button" onClick={null} text="clear" />
     </div>
   );
 }

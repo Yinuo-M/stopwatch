@@ -23,6 +23,8 @@ export default function Stopwatch() {
   // Current time is the amount of time that should be displayed.
   const [currentTime, setCurrentTime] = useState(0);
   const [requestId, setRequestId] = useState(null);
+  const [prevLapTime, setPrevLapTime] = useState(null);
+  const [lapHistory, setLapHistory] = useState([]);
 
   function startTimer() {
     setIsPaused(false);
@@ -56,6 +58,23 @@ export default function Stopwatch() {
     setCurrentTime(0);
   }
 
+  function lapTimer() {
+    updateLapHistory();
+    setPrevLapTime(currentTime);
+  }
+
+  function updateLapHistory() {
+    let lapRecord = {};
+    lapRecord.totalTime = convertToDisplayTime(currentTime);
+    lapRecord.lapTime = convertToDisplayTime(currentTime - prevLapTime);
+    setLapHistory((prevState) => {
+      const newState = [...prevState];
+      newState.push(lapRecord);
+      return newState;
+    });
+    console.log(lapHistory);
+  }
+
   function cleanup() {
     if (requestId) cancelAnimationFrame(requestId);
   }
@@ -64,18 +83,18 @@ export default function Stopwatch() {
     return cleanup;
   });
 
-  const displayTime = convertToDisplayTime(currentTime);
   return (
     <div className="stopwatch">
-      <Timer displayTime={displayTime} />
+      <Timer currentTime={currentTime} />
       <Controls
         isActive={isActive}
         isPaused={isPaused}
         startTimer={startTimer}
         pauseTimer={pauseTimer}
         resetTimer={resetTimer}
+        lapTimer={lapTimer}
       />
-      <LapTable />
+      <LapTable lapHistory={lapHistory} />
     </div>
   );
 }

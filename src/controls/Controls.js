@@ -17,7 +17,7 @@ export default function Controls(props) {
           <Button
             className="controls__button controls__button--gray"
             text="lap"
-            handleClick={null}
+            handleClick={props.lapTimer}
           />
           <Button
             className="controls__button controls__button--red"

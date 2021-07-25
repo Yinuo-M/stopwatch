@@ -1,10 +1,17 @@
 import TableRow from "./TableRow";
 
-export default function TableBody() {
+export default function TableBody(props) {
+  const lapHistory = [...props.lapHistory];
   return (
     <tbody className="lap__tbody">
-      <TableRow label="#2" lapTime="00:00:01:00" totalTime="00:00:01:04" />
-      <TableRow label="#1" lapTime="00:00:00:04" totalTime="00:00:00:04" />
+      {lapHistory.reverse().map((lapRecord, index) => (
+        <TableRow
+          key={index}
+          label={lapHistory.length - index}
+          lapTime={lapRecord.lapTime}
+          totalTime={lapRecord.totalTime}
+        />
+      ))}
     </tbody>
   );
 }
