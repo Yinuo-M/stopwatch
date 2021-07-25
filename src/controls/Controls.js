@@ -1,4 +1,5 @@
 import Button from "../common/Button";
+import "./Controls.scss";
 
 export default function Controls() {
   return (
