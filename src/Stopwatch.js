@@ -27,6 +27,7 @@ export default function Stopwatch() {
   const [prevLapTime, setPrevLapTime] = useState(0);
   const [lapHistory, setLapHistory] = useState([]);
 
+  //Functions that controls the timer
   function startTimer() {
     setIsPaused(false);
     setIsActive(true);
@@ -61,6 +62,7 @@ export default function Stopwatch() {
     setPrevLapTime(0);
   }
 
+  //Functions for lapping
   function lapTimer() {
     updateLapHistory();
     setPrevLapTime(currentTime);
@@ -91,7 +93,7 @@ export default function Stopwatch() {
   }
 
   useEffect(() => {
-    //Get lapHistory from localStorage upon
+    //Get lapHistory from localStorage upon first render
     const storedLapHistory = localStorage.getItem("lapHistory");
     if (!storedLapHistory) {
       localStorage.setItem("lapHistory", "[]");
