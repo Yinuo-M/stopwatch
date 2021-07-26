@@ -12,7 +12,7 @@ export default function Controls(props) {
         text={isRunning ? "pause" : "start"}
         handleClick={isRunning ? props.pauseTimer : props.startTimer}
       />
-      {props.isActive ? (
+      {props.isActive && (
         <div>
           <Button
             className="controls__button controls__button--gray"
@@ -25,7 +25,7 @@ export default function Controls(props) {
             handleClick={props.resetTimer}
           />
         </div>
-      ) : null}
+      )}
     </div>
   );
 }

@@ -6,7 +6,7 @@ export default function TableBody(props) {
     <tbody className="lap__tbody">
       {lapHistory.reverse().map((lapRecord, index) => (
         <TableRow
-          key={index}
+          key={lapHistory.length - index}
           label={lapHistory.length - index}
           lapTime={lapRecord.lapTime}
           totalTime={lapRecord.totalTime}

@@ -22,7 +22,8 @@ export default function Stopwatch() {
   const [elapsedTime, setElapsedTime] = useState(0);
   // Current time is the amount of time that should be displayed.
   const [currentTime, setCurrentTime] = useState(0);
-  const [requestId, setRequestId] = useState(null);
+  //requestId is declared as a ref so changes in Id won't trigger a re-render.
+  const requestId = useRef(null);
   const [prevLapTime, setPrevLapTime] = useState(0);
   const [lapHistory, setLapHistory] = useState([]);
 
@@ -37,21 +38,21 @@ export default function Stopwatch() {
     setCurrentTime(elapsedTime + timestamp - startTime.current);
     console.log("running");
 
-    const requestId = requestAnimationFrame(updateTime);
-    setRequestId(requestId);
+    const newRequestId = requestAnimationFrame(updateTime);
+    requestId.current = newRequestId;
   }
 
   function pauseTimer() {
-    if (requestId) cancelAnimationFrame(requestId);
-    setRequestId(null);
+    if (requestId.current) cancelAnimationFrame(requestId.current);
+    requestId.current = null;
     startTime.current = 0;
     setIsPaused(true);
     setElapsedTime(currentTime);
   }
 
   function resetTimer() {
-    if (requestId) cancelAnimationFrame(requestId);
-    setRequestId(null);
+    if (requestId.current) cancelAnimationFrame(requestId.current);
+    requestId.current = null;
     startTime.current = 0;
     setIsPaused(false);
     setIsActive(false);
@@ -89,22 +90,20 @@ export default function Stopwatch() {
     setPrevLapTime(0);
   }
 
-  //Get lapHistory from localStorage upon
   useEffect(() => {
+    //Get lapHistory from localStorage upon
     const storedLapHistory = localStorage.getItem("lapHistory");
     if (!storedLapHistory) {
       localStorage.setItem("lapHistory", "[]");
     } else {
       setLapHistory(JSON.parse(storedLapHistory));
     }
-  }, []);
 
-  //Clean up requestAnimationFrame
-  useEffect(() => {
+    //Clean up requestAnimationFrame
     return () => {
-      if (requestId) cancelAnimationFrame(requestId);
+      if (requestId.current) cancelAnimationFrame(requestId.current);
     };
-  }, [requestId]);
+  }, []);
 
   return (
     <div className="stopwatch">
@@ -117,9 +116,9 @@ export default function Stopwatch() {
         resetTimer={resetTimer}
         lapTimer={lapTimer}
       />
-      {lapHistory.length > 0 ? (
+      {lapHistory.length > 0 && (
         <LapTable lapHistory={lapHistory} clearLapHistory={clearLapHistory} />
-      ) : null}
+      )}
     </div>
   );
 }

@@ -1,6 +1,6 @@
 export function convertToDisplayTime(timestamp) {
   //The argument timestamp is a number in miliseconds.
-  // It converts the timestamp to 00:00:00:00 format and return it.
+  //This function returns a converted timestamp to the 00:00:00:00 format.
 
   const hours = Math.floor(timestamp / (1000 * 60 * 60));
   timestamp -= hours * (1000 * 60 * 60);
