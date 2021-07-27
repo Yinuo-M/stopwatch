@@ -6,10 +6,11 @@ by [Yinuo Meng](mengyn1999@gmail.com)
 
 1. Navigate to [repo](https://github.com/Yinuo-M/stopwatch)
 2. Clone locally using `git clone https://github.com/Yinuo-M/stopwatch.git`
-3. Install dependencies using `npm install`
-4. Run tests using `npm test`
-5. Start local development server using `npm start`
-6. Navigate to app in [browser](http://localhost:3000)
+3. Move into the stopwatch folder using `cd stopwatch`
+4. Install dependencies using `npm install`
+5. Run tests using `npm test`
+6. Start local development server using `npm start`
+7. Navigate to app in [browser](http://localhost:3000)
 
 ## Technologies
 
