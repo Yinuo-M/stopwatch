@@ -8,9 +8,6 @@
 }
 
 .lap__table {
-  // Reset table style to collapse table borders
-  // and size columns according to the width of
-  // their headings.
   table-layout: fixed;
   min-width: 18rem;
   border-collapse: collapse;

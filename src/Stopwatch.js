@@ -8,7 +8,7 @@ import "./Stopwatch.scss";
 export default function Stopwatch() {
   //All time values are in miliseconds.
 
-  //Control the timer
+  //Timer controls
   const [isActive, setIsActive] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   /*startTime is declared as a ref rather than a state for the following
@@ -18,19 +18,12 @@ export default function Stopwatch() {
     calculation inside setCurrentTime to be wrong. Declaring startTime as 
     a ref solves this problem. */
   const startTime = useRef(0);
-  /*elapsedTime tracks the amount of time recorded by the timer
-    when the user press pause.*/
+  //elapsedTime tracks the amount of time recorded by the timer when the user clicks pause.
   const [elapsedTime, setElapsedTime] = useState(0);
   // Current time is the amount of time that should be displayed.
   const [currentTime, setCurrentTime] = useState(0);
-  //requestId is declared as a ref so changes in Id won't trigger a re-render.
+  //requestId is declared as a ref so changes in requestAnimationFrame ID won't trigger a re-render.
   const requestId = useRef(null);
-
-  function startTimer() {
-    setIsPaused(false);
-    setIsActive(true);
-    requestAnimationFrame(updateTime);
-  }
 
   function updateTime(timestamp) {
     if (!startTime.current) startTime.current = timestamp;
@@ -38,6 +31,12 @@ export default function Stopwatch() {
 
     const newRequestId = requestAnimationFrame(updateTime);
     requestId.current = newRequestId;
+  }
+
+  function startTimer() {
+    setIsPaused(false);
+    setIsActive(true);
+    requestAnimationFrame(updateTime);
   }
 
   function pauseTimer() {
@@ -66,14 +65,9 @@ export default function Stopwatch() {
     };
   }, []);
 
-  //Control the lap function
+  //Lap controls
   const [prevLapTime, setPrevLapTime] = useState(0);
   const [lapHistory, setLapHistory] = useState([]);
-
-  function lapTimer() {
-    updateLapHistory();
-    setPrevLapTime(currentTime);
-  }
 
   function storeLapHistory(newRecord) {
     const history = JSON.parse(localStorage.getItem("lapHistory"));
@@ -91,6 +85,11 @@ export default function Stopwatch() {
       newState.push(lapRecord);
       return newState;
     });
+  }
+
+  function lapTimer() {
+    updateLapHistory();
+    setPrevLapTime(currentTime);
   }
 
   function clearLapHistory() {
