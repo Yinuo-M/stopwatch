@@ -8,6 +8,7 @@ import "./Stopwatch.scss";
 export default function Stopwatch() {
   //All time values are in miliseconds.
 
+  //Control the timer
   const [isActive, setIsActive] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   /*startTime is declared as a ref rather than a state for the following
@@ -24,10 +25,7 @@ export default function Stopwatch() {
   const [currentTime, setCurrentTime] = useState(0);
   //requestId is declared as a ref so changes in Id won't trigger a re-render.
   const requestId = useRef(null);
-  const [prevLapTime, setPrevLapTime] = useState(0);
-  const [lapHistory, setLapHistory] = useState([]);
 
-  //Functions that controls the timer
   function startTimer() {
     setIsPaused(false);
     setIsActive(true);
@@ -37,14 +35,13 @@ export default function Stopwatch() {
   function updateTime(timestamp) {
     if (!startTime.current) startTime.current = timestamp;
     setCurrentTime(elapsedTime + timestamp - startTime.current);
-    console.log("running");
 
     const newRequestId = requestAnimationFrame(updateTime);
     requestId.current = newRequestId;
   }
 
   function pauseTimer() {
-    if (requestId.current) cancelAnimationFrame(requestId.current);
+    cancelAnimationFrame(requestId.current);
     requestId.current = null;
     startTime.current = 0;
     setIsPaused(true);
@@ -52,7 +49,7 @@ export default function Stopwatch() {
   }
 
   function resetTimer() {
-    if (requestId.current) cancelAnimationFrame(requestId.current);
+    cancelAnimationFrame(requestId.current);
     requestId.current = null;
     startTime.current = 0;
     setIsPaused(false);
@@ -62,7 +59,17 @@ export default function Stopwatch() {
     setPrevLapTime(0);
   }
 
-  //Functions for lapping
+  useEffect(() => {
+    //Clean up requestAnimationFrame when Stopwatch unmounts.
+    return () => {
+      if (requestId.current) cancelAnimationFrame(requestId.current);
+    };
+  }, []);
+
+  //Control the lap function
+  const [prevLapTime, setPrevLapTime] = useState(0);
+  const [lapHistory, setLapHistory] = useState([]);
+
   function lapTimer() {
     updateLapHistory();
     setPrevLapTime(currentTime);
@@ -100,11 +107,6 @@ export default function Stopwatch() {
     } else {
       setLapHistory(JSON.parse(storedLapHistory));
     }
-
-    //Clean up requestAnimationFrame
-    return () => {
-      if (requestId.current) cancelAnimationFrame(requestId.current);
-    };
   }, []);
 
   return (
