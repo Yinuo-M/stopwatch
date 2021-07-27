@@ -4,13 +4,12 @@ by [Yinuo Meng](mengyn1999@gmail.com)
 
 ## Installation
 
-1. Navigate to [repo](https://github.com/Yinuo-M/stopwatch)
-2. Clone locally using `git clone https://github.com/Yinuo-M/stopwatch.git`
-3. Move into the stopwatch folder using `cd stopwatch`
-4. Install dependencies using `npm install`
-5. Run tests using `npm test`
-6. Start local development server using `npm start`
-7. Navigate to app in [browser](http://localhost:3000)
+1. Clone locally using `git clone https://github.com/Yinuo-M/stopwatch.git`
+2. Navigate to the stopwatch folder
+2. Install dependencies using `npm install`
+3. Run tests using `npm test`
+4. Start local development server using `npm start`
+5. Navigate to app in [browser](http://localhost:3000)
 
 ## Technologies
 
@@ -22,7 +21,7 @@ by [Yinuo Meng](mengyn1999@gmail.com)
 
 1. Time display: The current elapsed time is displayed in the 00:00:00:00 (hours, minutes, seconds, centiseconds) format. Time is updated by recursively calling `requestAnimationFrame` and using the timestamp provided by `requestAnimationFrame`'s callback's first argument.
 
-2. Start button: There's a start button that start or continues the timer. Starting the timer hides the start button and shows the pause, lap and reset buttons.
+2. Start button: There's a start button that starts or continues the timer. Starting the timer hides the start button and shows the pause, lap and reset buttons.
 
 3. Pause button: There's a pause button that pauses the running timer. It only appears after the timer starts running. Pausing the timer hides the pause button and shows the start button.
 
